@@ -7,9 +7,6 @@ class Hand
     @opponent_fished_for = Deck.new
   end
 
-  def sort(player)
-  end
-
   def display(cards)
     cards.each {|index| puts "cards[index]"}
   end 

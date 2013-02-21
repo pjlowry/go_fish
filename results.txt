@@ -1,0 +1,61 @@
+This prints a card deck ..
+
+
+[#<Player:0x007fbf5a919a08 @name="Bob", @hand=[#<Card:0x007fbf5a919080 @rank="'2'", @suit="'Club'">, #<Card:0x007fbf5a9190a8 @rank="'10'", @suit="'Diamond'">, #<Card:0x007fbf5a9190d0 @rank="'Q'", @suit="'Spade'">, #<Card:0x007fbf5a9190f8 @rank="'6'", @suit="'Club'">, #<Card:0x007fbf5a919120 @rank="'7'", @suit="'Spade'">, #<Card:0x007fbf5a919148 @rank="'A'", @suit="'Spade'">, #<Card:0x007fbf5a919170 @rank="'5'", @suit="'Club'">], @number_of_suits=0>, #<Player:0x007fbf5a919990 @name="Computer", @hand=[#<Card:0x007fbf5a9187c0 @rank="'6'", @suit="'Heart'">, #<Card:0x007fbf5a9187e8 @rank="'3'", @suit="'Diamond'">, #<Card:0x007fbf5a918810 @rank="'5'", @suit="'Diamond'">, #<Card:0x007fbf5a918838 @rank="'K'", @suit="'Club'">, #<Card:0x007fbf5a918860 @rank="'10'", @suit="'Spade'">, #<Card:0x007fbf5a918888 @rank="'9'", @suit="'Heart'">, #<Card:0x007fbf5a9188b0 @rank="'4'", @suit="'Club'">], @number_of_suits=0>] should initalize the deck and deal 7 random cards to each player.
+'Spade' '8'
+'Heart' '8'
+'Spade' '9'
+'Club' '8'
+'Heart' '3'
+'Diamond' 'A'
+'Diamond' '2'
+'Club' 'A'
+'Heart' '7'
+'Spade' 'J'
+'Heart' 'J'
+'Spade' 'A'
+'Heart' 'A'
+'Spade' '7'
+'Club' '10'
+'Diamond' '9'
+'Heart' '2'
+'Diamond' '7'
+'Diamond' 'K'
+'Club' '5'
+'Club' 'Q'
+'Heart' 'Q'
+'Spade' '5'
+'Diamond' 'Q'
+'Diamond' '8'
+'Spade' '6'
+'Heart' '4'
+'Club' '2'
+'Diamond' '10'
+'Spade' 'K'
+'Spade' 'Q'
+'Spade' '2'
+'Diamond' 'J'
+'Spade' '3'
+'Heart' '10'
+'Club' 'J'
+'Club' '9'
+'Club' '6'
+'Heart' 'K'
+'Club' '3'
+'Diamond' '4'
+'Club' '7'
+'Spade' '4'
+'Heart' '5'
+'Diamond' '6'
+
+
+Bob has 7 cards: [#<Card:0x007fbf5a919080 @rank="'2'", @suit="'Club'">, #<Card:0x007fbf5a9190a8 @rank="'10'", @suit="'Diamond'">, #<Card:0x007fbf5a9190d0 @rank="'Q'", @suit="'Spade'">, #<Card:0x007fbf5a9190f8 @rank="'6'", @suit="'Club'">, #<Card:0x007fbf5a919120 @rank="'7'", @suit="'Spade'">, #<Card:0x007fbf5a919148 @rank="'A'", @suit="'Spade'">, #<Card:0x007fbf5a919170 @rank="'5'", @suit="'Club'">].
+
+
+Computer has 7 cards: [#<Card:0x007fbf5a9187c0 @rank="'6'", @suit="'Heart'">, #<Card:0x007fbf5a9187e8 @rank="'3'", @suit="'Diamond'">, #<Card:0x007fbf5a918810 @rank="'5'", @suit="'Diamond'">, #<Card:0x007fbf5a918838 @rank="'K'", @suit="'Club'">, #<Card:0x007fbf5a918860 @rank="'10'", @suit="'Spade'">, #<Card:0x007fbf5a918888 @rank="'9'", @suit="'Heart'">, #<Card:0x007fbf5a9188b0 @rank="'4'", @suit="'Club'">].
+
+
+Bob has a hand of 7 sorted cards: [#<Card:0x007fbf5a9190a8 @rank="'10'", @suit="'Diamond'">, #<Card:0x007fbf5a919080 @rank="'2'", @suit="'Club'">, #<Card:0x007fbf5a919170 @rank="'5'", @suit="'Club'">, #<Card:0x007fbf5a9190f8 @rank="'6'", @suit="'Club'">, #<Card:0x007fbf5a919120 @rank="'7'", @suit="'Spade'">, #<Card:0x007fbf5a919148 @rank="'A'", @suit="'Spade'">, #<Card:0x007fbf5a9190d0 @rank="'Q'", @suit="'Spade'">].
+
+
+Computer has a hand of 7 sorted cards: [#<Card:0x007fbf5a918860 @rank="'10'", @suit="'Spade'">, #<Card:0x007fbf5a9187e8 @rank="'3'", @suit="'Diamond'">, #<Card:0x007fbf5a9188b0 @rank="'4'", @suit="'Club'">, #<Card:0x007fbf5a918810 @rank="'5'", @suit="'Diamond'">, #<Card:0x007fbf5a9187c0 @rank="'6'", @suit="'Heart'">, #<Card:0x007fbf5a918888 @rank="'9'", @suit="'Heart'">, #<Card:0x007fbf5a918838 @rank="'K'", @suit="'Club'">].

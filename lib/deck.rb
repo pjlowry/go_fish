@@ -14,8 +14,23 @@ class Deck
     end
   end
 
-  def number_of_cards(deck)
+  def search_hand(rank)
+    @cards.find_index {|card| card.rank.include? rank} 
+  end
 
+  def display_deck
+    @cards.each {|card| puts "#{card}"}
+  end
+
+  def four_of_a_kind
+    index = 0
+    while index < (card.length - 3)
+      if card[index].rank == card[index + 1].rank && card[index].rank == card[index + 2].rank &&
+         card[index].rank == card[index + 3].rank
+        card.slice!(index..index+3)
+      end
+      index = index + 1
+    end
   end
 
   def to_s

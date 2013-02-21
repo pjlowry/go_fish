@@ -2,7 +2,7 @@ require './lib/card.rb'
 require './lib/deck.rb'
 require './lib/player.rb'
 require './lib/game.rb'
-require './lib/turn.rb'
+
 
 
 # Goal
@@ -34,83 +34,106 @@ name = gets.chomp
 
 puts "Press enter to select who goes first."
 gets.chomp
-# first_player = rand(0..1)
 
-first_player = 0
 game = Game.new
+dealer_deck = Deck.new
 
-if first_player == 0
-	game.add_players([Player.new(name), Player.new('Computer')])
-else
-	game.add_players([Player.new('Computer'), Player.new(name)])
-end
+players = [Player.new(name), Player.new('Computer')].shuffle
 
 # game.to_s
-# game.players.each {|player| puts "\n#{player.name}"}
+# players.each {|player| puts "\n#{player.name}"}
 
-puts "#{game.players[0].name} goes first"
+puts "#{players[0].name} goes first"
 puts "Press enter to deal cards."
 gets.chomp
-game.dealer_deck.deal(game.players)
- game.players.each {|player| puts "\n#{player.name} has a hand of 7  cards: #{player.hand.to_s}."}
+dealer_deck.deal(players)
+players.each {|player| player.hand.sort! {|a,b| a.rank <=> b.rank }}
+# players.each {|player| puts "\n#{player.name} has a hand of 7 cards: #{player.hand.display_deck}"}
+players.each do |player| 
+  puts "\n#{player.name}'s hand:"
+  for i in 0..(player.hand.length-1)
+    puts "#{player.hand[i].rank}, #{player.hand[i].suit}"
+  end
+end
+
 #       if hand.four_of_a_kind(both player)
 #         lay down cards
 #       end
-until game.over?
- 	game.players.each do |player|
+until game.over(players, dealer_deck)
+ 	players.each do |player|
+#    p players
+#   p player
+    other_player = (players - [player]).first
+    # [player1, player2] - player1 = [player2].first player2
  		puts "\n#{player.name} is next..."    
     response = 'yes'
- 		until response == 'no' || game.over?
-       # if player.name != "Computer"
+ 		until response == 'no' || game.over(players, dealer_deck)       
+    # if player.name != "Computer"
        #   player.hand.to_s
        # end
-       puts "Player's hand: #{player.hand.sort {|a,b| a.rank <=> b.rank }}."
+#       puts "Player's hand: #{player.hand.sort! {|a,b| a.rank <=> b.rank }}."
 
       if player.name != "Computer"
         puts "What do you want to fish for (2 3 4 5 6 7 8 9 10 J Q K A)?"
         rank =  gets.chomp
       else
-        rank = player.hand[rand(0..player.hand.length-1)].rank  
+        rank = player.hand[rand(0..player.hand.length - 1)].rank  
       end
-puts rank
+#puts rank
 
       if player.name != "Computer"
          puts "Do you have any #{rank}'s?"
          response = 'no'
-         game.players[1].hand.each {|card| if rank == card.rank then response = 'yes' end}  # improve
+         
+# players[1].hand.cards.each {|card| if rank == card.rank then response = 'yes' end}  # improve
+#puts "#{other_player.hand.display_deck}"
+         if other_player.hand.find_index {|card| card.rank.include? rank} then response = 'yes' end
       else
          puts "Do you have any #{rank}'s (yes/no)? "
          response =  gets.chomp
       end
-puts response
+#puts response
 
 
  			if response == 'no'
  				puts "No I don't; go fish!"
-        player.hand.add_card(game.dealer_deck.cards[game.dealer_deck.cards.length - 1])
-        game.dealer_deck.pop
- 				if player.hand[player.hand.length-1].rank == rank
+# puts "#{player.hand}"
+        player.add_card(dealer_deck.cards[dealer_deck.cards.length - 1])
+        dealer_deck.cards.pop
+ 				if player.hand[player.hand.length - 1].rank == rank
           response = 'yes'
  				end
  			else
  				puts "Yes, I do." 
-        game.players[1].hand.each do |index| 
-          if rank == game.players[1].hand[index].rank then break end  # improve
-        end
-        more_fish = true
-        while more_fish?
-          player.hand.add_card(game.players[1].hand[index])
-          index+=
-          if rank != game.players[1].hand[index].rank then more_fish = false end
+        index = other_player.hand.find_index {|card| card.rank.include? rank}
+        while index
+          player.add_card(other_player.hand[index])
+          other_player.hand.slice!(index)
+          index = other_player.hand.find_index {|card| card.rank.include? rank}
+puts index
  			  end
       end
-       puts "Player's hand: #{player.hand.sort {|a,b| a.rank <=> b.rank }}."
+      player.hand.sort! {|a,b| a.rank <=> b.rank }
 
+players.each do |player| 
+  puts "\n#{player.name}'s hand :"
+  for i in 0..(player.hand.length-1)
+    puts "#{player.hand[i].rank}, #{player.hand[i].suit}"
+  end
+end
+#check for 4 of a kind
+    index = 0
+    while index < (player.hand.length - 3)
+      if player.hand[index].rank == player.hand[index + 1].rank && 
+         player.hand[index].rank == player.hand[index + 2].rank &&
+         player.hand[index].rank == player.hand[index + 3].rank
 
-#  			if hand.four_of_a_kind(player)
-#  				lay down cards
-#  			end
- 		end
+        player.hand.slice!(index..index+3)
+        puts "four of a kind"
+      end
+      index = index + 1
+    end
+    end
  	end
 end
-puts "Winner is #{game.winner.name!}"
+puts "Winner is #{game.winner(players).name!}"
